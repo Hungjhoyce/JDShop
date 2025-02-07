@@ -141,3 +141,4 @@ D:\Học tập\CĐTN\JDShop\api\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.
 D:\Học tập\CĐTN\JDShop\api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Học tập\CĐTN\JDShop\api\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Học tập\CĐTN\JDShop\api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\Học tập\CĐTN\JDShop\api\obj\Debug\net8.0\api.sourcelink.json

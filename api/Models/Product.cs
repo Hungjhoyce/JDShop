@@ -21,6 +21,8 @@ namespace api.Models
         ///----------------------------------
         public string Image {get; set;} = string.Empty;
         public DateTime CreatedAt {get; set;} = DateTime.Now;
+        public List<ProductVariant> ProductVariants {get; set;} = new List<ProductVariant>();
+
 
     }
 }

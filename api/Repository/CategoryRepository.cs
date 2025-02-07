@@ -49,12 +49,12 @@ namespace api.Repository
 
         public Task<List<Category>> GetAllAsync()
         {
-            return _context.Categorys.Include(c => c.Products).ToListAsync();
+            return _context.Categorys.Include(c => c.Products).ThenInclude(c => c.ProductVariants).ToListAsync();
         }
 
         public async Task<Category?> GetByIdAsync(int id)
         {
-            return await _context.Categorys.Include(c => c.Products).FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Categorys.Include(c => c.Products).ThenInclude(c => c.ProductVariants).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<Category?> UpdateAsync(int id, UpdateCategoryRequestDto categoryDto)

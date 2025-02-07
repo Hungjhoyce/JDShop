@@ -20,7 +20,7 @@ namespace api.Mappers
                 Stock = productModel.Stock,
                 CategoryId = productModel.CategoryId,
                 Image = productModel.Image,
-                CreatedAt = productModel.CreatedAt
+                ProductVariants = productModel.ProductVariants.Select(c => c.ToProductVariantDto()).ToList()
             };
         }
 

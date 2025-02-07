@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos.ProductVariant;
 
 namespace api.Dtos.Product
 {
@@ -18,5 +19,7 @@ namespace api.Dtos.Product
         ///----------------------------------
         public string Image {get; set;} = string.Empty;
         public DateTime CreatedAt {get; set;} = DateTime.Now;
+
+        public List<ProductVariantDto> ProductVariants {get; set;}
     }
 }
