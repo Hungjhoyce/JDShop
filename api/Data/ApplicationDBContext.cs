@@ -16,5 +16,6 @@ namespace api.Data
         public DbSet<Product> Products {get; set;}
         public DbSet<Category> Categorys {get; set;}
         public DbSet<ProductVariant> ProductVariants {get; set;}
+        public DbSet<Review> Reviews {get; set;}
     }
 }

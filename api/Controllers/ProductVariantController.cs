@@ -38,7 +38,7 @@ namespace api.Controllers
 
             if(productVariant == null)
             {
-                return NotFound();
+                return NotFound("Khong tim thay loai san pham");
             }
 
             return Ok(productVariant.ToProductVariantDto());

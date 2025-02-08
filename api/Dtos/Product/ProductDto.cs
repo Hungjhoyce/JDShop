@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.ProductVariant;
+using api.Dtos.Review;
+using api.Models;
 
 namespace api.Dtos.Product
 {
@@ -21,5 +23,6 @@ namespace api.Dtos.Product
         public DateTime CreatedAt {get; set;} = DateTime.Now;
 
         public List<ProductVariantDto> ProductVariants {get; set;}
+        public List<ReviewDto> reviews {get; set;}
     }
 }
