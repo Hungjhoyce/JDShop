@@ -19,7 +19,7 @@ namespace api.Repository
             _context = context;
         }
 
-        public Task<bool> CategoryExists(int id)
+        public Task<bool> CategoryExists(Guid id)
         {
             return _context.Categorys.AnyAsync(s => s.Id == id);
         }
@@ -32,7 +32,7 @@ namespace api.Repository
             return categoryModel;
         }
 
-        public async Task<Category?> DeleteAsync(int id)
+        public async Task<Category?> DeleteAsync(Guid id)
         {
             var categoryModel = await _context.Categorys.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -52,12 +52,12 @@ namespace api.Repository
             return _context.Categorys.Include(c => c.Products).ThenInclude(c => c.ProductVariants).ToListAsync();
         }
 
-        public async Task<Category?> GetByIdAsync(int id)
+        public async Task<Category?> GetByIdAsync(Guid id)
         {
-            return await _context.Categorys.Include(c => c.Products).ThenInclude(c => c.ProductVariants).FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Categorys.Include(c => c.Products).FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public async Task<Category?> UpdateAsync(int id, UpdateCategoryRequestDto categoryDto)
+        public async Task<Category?> UpdateAsync(Guid id, UpdateCategoryRequestDto categoryDto)
         {
             var existingCategory = await _context.Categorys.FirstOrDefaultAsync(x => x.Id == id);
 

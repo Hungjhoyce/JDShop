@@ -7,9 +7,9 @@ namespace api.Dtos.Review
 {
     public class ReviewDto
     {
-        public int Id {get; set;}
+        public Guid Id {get; set;}
         public int Rating {get; set;}
         public string Comment {get; set;} = string.Empty;
-        public int? ProductId {get; set;}
+        public Guid? ProductId {get; set;}
     }
 }

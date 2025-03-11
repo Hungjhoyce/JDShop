@@ -8,15 +8,14 @@ namespace api.Models
 {
     public class ProductVariant
     {
-        public int Id {get; set;}
-        public int? ProductId {get; set;}
-        public Product? Product {get; set;}
+        public Guid Id {get; set;} = Guid.NewGuid();
+        public Guid? ProductId {get; set;}
         public string Size {get; set;} = string.Empty;
         public string Color {get; set;} = string.Empty;
         public int Stock {get; set;} = 0;
-
+        public string ImageUrl { get; set; } = string.Empty;
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Price {get; set;}
+        public decimal Price {get; set;} = 0;
 
 
     }

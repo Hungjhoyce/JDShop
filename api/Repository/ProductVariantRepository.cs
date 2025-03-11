@@ -27,7 +27,7 @@ namespace api.Repository
             return productVariantModel;
         }
 
-        public async Task<ProductVariant?> DeleteAsync(int id)
+        public async Task<ProductVariant?> DeleteAsync(Guid id)
         {
             var productVariantModel = await _context.ProductVariants.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -47,12 +47,12 @@ namespace api.Repository
             return await _context.ProductVariants.ToListAsync();
         }
 
-        public async Task<ProductVariant?> GetByIdAsync(int id)
+        public async Task<ProductVariant?> GetByIdAsync(Guid id)
         {
             return await _context.ProductVariants.FindAsync(id);
         }
 
-        public async Task<ProductVariant?> UpdateAsync(int id, ProductVariant productVariantModel)
+        public async Task<ProductVariant?> UpdateAsync(Guid id, ProductVariant productVariantModel)
         {
             var existingProductVariant = await _context.ProductVariants.FindAsync(id);
 

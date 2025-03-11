@@ -28,6 +28,7 @@ namespace api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var categorys = await _categoryRepo.GetAllAsync();
+
             var categoryDto = categorys.Select(s => s.ToCategoryDto());
 
             return Ok(categorys);
@@ -35,7 +36,7 @@ namespace api.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var category = await _categoryRepo.GetByIdAsync(id);
 
@@ -51,7 +52,7 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCategoryRequestDto categoryDto)
         {
-            var categoryModel = categoryDto.ToCategoryFromCrateDTO();
+            var categoryModel = categoryDto.ToCategoryFromCreate();
             await _categoryRepo.CreateAsync(categoryModel);
 
             return CreatedAtAction(nameof(GetById), new {id = categoryModel.Id}, categoryModel.ToCategoryDto());
@@ -59,7 +60,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCategoryRequestDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCategoryRequestDto updateDto)
         {
             var categoryModel = await _categoryRepo.UpdateAsync(id, updateDto);
 
@@ -78,7 +79,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var categoryModel = await _categoryRepo.DeleteAsync(id);
 

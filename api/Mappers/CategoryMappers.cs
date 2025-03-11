@@ -20,7 +20,16 @@ namespace api.Mappers
             };
         }
 
-        public static Category ToCategoryFromCrateDTO(this CreateCategoryRequestDto categoryDto)
+        public static Category ToCategoryFromCreate(this CreateCategoryRequestDto categoryDto)
+        {
+            return new Category
+            {
+                Name = categoryDto.Name,
+                Description = categoryDto.Description
+            };
+        }
+
+        public static Category ToCategoryFromUpdate(this UpdateCategoryRequestDto categoryDto)
         {
             return new Category
             {

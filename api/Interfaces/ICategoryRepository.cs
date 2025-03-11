@@ -10,10 +10,10 @@ namespace api.Interfaces
     public interface ICategoryRepository
     {
         Task<List<Category>> GetAllAsync();
-        Task<Category?> GetByIdAsync(int id);
+        Task<Category?> GetByIdAsync(Guid id);
         Task<Category> CreateAsync(Category categoryModel);
-        Task<Category?> UpdateAsync(int id, UpdateCategoryRequestDto categoryDto);
-        Task<Category?> DeleteAsync(int id);
-        Task<bool> CategoryExists(int id);
+        Task<Category?> UpdateAsync(Guid id, UpdateCategoryRequestDto categoryDto);
+        Task<Category?> DeleteAsync(Guid id);
+        Task<bool> CategoryExists(Guid id);
     }
 }

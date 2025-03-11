@@ -20,13 +20,13 @@ namespace api.Mappers
             };
         }
 
-        public static Review ToReviewFromCreate(this CreateReviewDto reviewDto, int productId)
+        public static Review ToReviewFromCreate(this CreateReviewDto reviewDto)
         {
             return new Review
             {
                 Rating = reviewDto.Rating,
                 Comment = reviewDto.Comment,
-                ProductId = productId
+                ProductId = reviewDto.ProductId
             };
         }
 

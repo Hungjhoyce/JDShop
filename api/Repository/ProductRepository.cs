@@ -25,7 +25,7 @@ namespace api.Repository
             return productModel;
         }
 
-        public async Task<Product?> DeleteAsync(int id)
+        public async Task<Product?> DeleteAsync(Guid id)
         {
             var productModel = await _context.Products.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -45,17 +45,17 @@ namespace api.Repository
             return await _context.Products.Include(c => c.ProductVariants).Include(c => c.Reviews).ToListAsync();
         }
 
-        public async Task<Product?> GetByIdAsync(int id)
+        public async Task<Product?> GetByIdAsync(Guid id)
         {
             return await _context.Products.Include(c => c.ProductVariants).Include(c => c.Reviews).FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public Task<bool> ProductExists(int id)
+        public Task<bool> ProductExists(Guid id)
         {
             return _context.Products.AnyAsync(s => s.Id == id);
         }
 
-        public async Task<Product?> UpdateAsync(int id, Product productModel)
+        public async Task<Product?> UpdateAsync(Guid id, Product productModel)
         {
             var existingProduct = await _context.Products.FindAsync(id);
 
@@ -67,8 +67,8 @@ namespace api.Repository
             existingProduct.Name = productModel.Name;
             existingProduct.Description = productModel.Description;
             existingProduct.Price = productModel.Price;
-            existingProduct.Stock = productModel.Stock;
-            existingProduct.Image = productModel.Image;
+            existingProduct.StockQuantity = productModel.StockQuantity;
+            existingProduct.ImageUrl = productModel.ImageUrl;
 
             await _context.SaveChangesAsync();
 

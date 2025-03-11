@@ -32,7 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var productVariant = await _productVariantRepo.GetByIdAsync(id);
 
@@ -44,15 +44,11 @@ namespace api.Controllers
             return Ok(productVariant.ToProductVariantDto());
         }
 
-        [HttpPost("{productId}")]
-        public async Task<IActionResult> Create([FromRoute] int productId, CreateProductVariantDto productVariantDto)
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateProductVariantDto productVariantDto)
         {
-            if(!await _productRepo.ProductExists(productId))
-            {
-                return BadRequest("San pham khong ton tai");
-            }
 
-            var productVariantModel = productVariantDto.ToProductVariantFromCreate(productId);
+            var productVariantModel = productVariantDto.ToProductVariantFromCreate();
             await _productVariantRepo.CreateAsync(productVariantModel);
 
             return CreatedAtAction(nameof(GetById), new {id = productVariantModel.Id}, productVariantModel.ToProductVariantDto());
@@ -61,7 +57,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProductVariantDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateProductVariantDto updateDto)
         {
             var productVariant = await _productVariantRepo.UpdateAsync(id, updateDto.ToProductVariantFromUpdate());
 
@@ -75,7 +71,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var productVariantModel = await _productVariantRepo.DeleteAsync(id);
 

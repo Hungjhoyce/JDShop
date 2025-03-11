@@ -9,10 +9,10 @@ namespace api.Interfaces
     public interface IProductRepository
     {
         Task<List<Product>> GetAllAsync();
-        Task<Product?> GetByIdAsync(int id);
+        Task<Product?> GetByIdAsync(Guid id);
         Task<Product> CreateAsync(Product productModel);
-        Task<Product?> UpdateAsync(int id, Product productModel);
-        Task<Product?> DeleteAsync(int id);
-        Task<bool> ProductExists(int id);
+        Task<Product?> UpdateAsync(Guid id, Product productModel);
+        Task<Product?> DeleteAsync(Guid id);
+        Task<bool> ProductExists(Guid id);
     }
 }

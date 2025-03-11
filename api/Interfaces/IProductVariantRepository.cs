@@ -10,9 +10,9 @@ namespace api.Interfaces
     public interface IProductVariantRepository
     {
         Task<List<ProductVariant>> GetAllAsync();
-        Task<ProductVariant?> GetByIdAsync(int id);
+        Task<ProductVariant?> GetByIdAsync(Guid id);
         Task<ProductVariant> CreateAsync(ProductVariant productVariantModel);
-        Task<ProductVariant?> UpdateAsync(int id, ProductVariant productVariantModel);
-        Task<ProductVariant?> DeleteAsync(int id);
+        Task<ProductVariant?> UpdateAsync(Guid id, ProductVariant productVariantModel);
+        Task<ProductVariant?> DeleteAsync(Guid id);
     }
 }

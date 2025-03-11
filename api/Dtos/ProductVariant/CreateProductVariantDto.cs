@@ -11,5 +11,6 @@ namespace api.Dtos.ProductVariant
         public string Color {get; set;} = string.Empty;
         public int Stock {get; set;} = 0;
         public decimal Price {get; set;}
+        public Guid? ProductId {get; set;}
     }
 }

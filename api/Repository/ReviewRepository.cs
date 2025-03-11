@@ -25,7 +25,7 @@ namespace api.Repository
             return reviewModel;
         }
 
-        public async Task<Review?> DeleteAsync(int id)
+        public async Task<Review?> DeleteAsync(Guid id)
         {
             var reviewModel = await _context.Reviews.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -45,12 +45,12 @@ namespace api.Repository
             return await _context.Reviews.ToListAsync();
         }
 
-        public async Task<Review?> GetByIdAsync(int id)
+        public async Task<Review?> GetByIdAsync(Guid id)
         {
             return await _context.Reviews.FindAsync(id);
         }
 
-        public async Task<Review?> UpdateAsync(int id, Review reviewModel)
+        public async Task<Review?> UpdateAsync(Guid id, Review reviewModel)
         {
             var existingReview = await _context.Reviews.FindAsync(id);
 

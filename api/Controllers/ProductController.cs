@@ -32,7 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var product = await _productRepo.GetByIdAsync(id);
 
@@ -44,15 +44,11 @@ namespace api.Controllers
             return Ok(product.ToProductDto());
         }
 
-        [HttpPost("{categoryId}")]
-        public async Task<IActionResult> Create([FromRoute] int categoryId, CreateProductDto productDto)
+        [HttpPost]
+        public async Task<IActionResult> Create( CreateProductDto productDto)
         {
-            if(!await _categoryRepo.CategoryExists(categoryId))
-            {
-                return BadRequest("Category khong ton tai!");
-            }
 
-            var productModel = productDto.ToProductFromCreate(categoryId);
+            var productModel = productDto.ToProductFromCreate();
             await _productRepo.CreateAsync(productModel);
 
             return CreatedAtAction(nameof(GetById), new {id = productModel.Id}, productModel.ToProductDto());
@@ -60,7 +56,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateProductRequestDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateProductRequestDto updateDto)
         {
             var product = await _productRepo.UpdateAsync(id, updateDto.ToProductFromUpdate());
 
@@ -74,7 +70,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var productModel = await _productRepo.DeleteAsync(id);
 

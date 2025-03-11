@@ -22,7 +22,7 @@ namespace api.Mappers
             };
         }
 
-        public static ProductVariant ToProductVariantFromCreate(this CreateProductVariantDto productVariantDto, int productId)
+        public static ProductVariant ToProductVariantFromCreate(this CreateProductVariantDto productVariantDto)
         {
             return new ProductVariant
             {
@@ -30,7 +30,7 @@ namespace api.Mappers
                 Color = productVariantDto.Color,
                 Stock = productVariantDto.Stock,
                 Price = productVariantDto.Price,
-                ProductId = productId
+                ProductId = productVariantDto.ProductId
             };
         }
 

@@ -1,0 +1,25 @@
+# docker compose -f ./docker-compose.yml up -d
+
+services: 
+  jdshopdb:
+    image: postgres:latest
+    container_name: jdshopdb
+    environment:
+      - POSTGRES_USER=hung
+      - POSTGRES_PASSWORD=asdasd123123
+      - POSTGRES_DB=Jdshopdb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_jdshopdata:/var/lib/postgresql/data/
+    networks:
+      custom:
+volumes:
+    postgres_jdshopdata:
+
+networks:
+  custom:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16

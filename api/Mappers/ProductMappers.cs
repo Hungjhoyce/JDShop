@@ -17,24 +17,24 @@ namespace api.Mappers
                 Name = productModel.Name,
                 Description = productModel.Description,
                 Price = productModel.Price,
-                Stock = productModel.Stock,
+                Stock = productModel.StockQuantity,
                 CategoryId = productModel.CategoryId,
-                Image = productModel.Image,
+                Image = productModel.ImageUrl,
                 ProductVariants = productModel.ProductVariants.Select(c => c.ToProductVariantDto()).ToList(),
                 reviews = productModel.Reviews.Select(c => c.ToReviewDto()).ToList()
             };
         }
 
-        public static Product ToProductFromCreate(this CreateProductDto productDto, int categoryId)
+        public static Product ToProductFromCreate(this CreateProductDto productDto)
         {
             return new Product
             {
                 Name = productDto.Name,
                 Description = productDto.Description,
                 Price = productDto.Price,
-                Stock = productDto.Stock,
-                CategoryId = categoryId,
-                Image = productDto.Image
+                StockQuantity = productDto.Stock,
+                CategoryId = productDto.CategoryId,
+                ImageUrl = productDto.Image
             };
         }
 
@@ -45,8 +45,8 @@ namespace api.Mappers
                 Name = productDto.Name,
                 Description = productDto.Description,
                 Price = productDto.Price,
-                Stock = productDto.Stock,
-                Image = productDto.Image
+                StockQuantity = productDto.Stock,
+                ImageUrl = productDto.Image
             };
         }
     }

@@ -12,5 +12,6 @@ namespace api.Dtos.Product
         public decimal Price {get; set;}
         public int Stock {get; set;} = 0; // SL
         public string Image {get; set;} = string.Empty;
+        public Guid? CategoryId {get; set;}
     }
 }

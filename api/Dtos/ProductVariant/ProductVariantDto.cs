@@ -7,8 +7,8 @@ namespace api.Dtos.ProductVariant
 {
     public class ProductVariantDto
     {
-        public int Id {get; set;}
-        public int? ProductId {get; set;}
+        public Guid Id {get; set;}
+        public Guid? ProductId {get; set;}
         public string Size {get; set;} = string.Empty;
         public string Color {get; set;} = string.Empty;
         public int Stock {get; set;} = 0;

@@ -8,19 +8,19 @@ namespace api.Models
 {
     public class Product
     {
-        public int Id {get; set;}
+        public Guid Id {get; set;} = Guid.NewGuid();
         public string Name {get; set;} = string.Empty;
-        public string Description {get; set;} = string.Empty; // Mô tả
-        
+        public string? Description {get; set;} = string.Empty; // Mô tả
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Price {get; set;}
-        public int Stock {get; set;} = 0; // SL
+        public decimal Price {get; set;} = 0;
+        public int StockQuantity {get; set;} = 0;
         ///---------------------------------
-        public int? CategoryId {get; set;}
-        public Category? Category {get; set;}
+        public Guid? CategoryId {get; set;}
         ///----------------------------------
-        public string Image {get; set;} = string.Empty;
-        public DateTime CreatedAt {get; set;} = DateTime.Now;
+        ///
+        ///----------------------------------
+        public string ImageUrl {get; set;} = string.Empty;
+        public DateTime CreatedAt {get; set;} = DateTime.UtcNow;
         public List<ProductVariant> ProductVariants {get; set;} = new List<ProductVariant>();
         public List<Review> Reviews {get; set;} = new List<Review>();
 

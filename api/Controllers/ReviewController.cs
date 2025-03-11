@@ -32,7 +32,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var review = await _reviewRepo.GetByIdAsync(id);
 
@@ -44,15 +44,11 @@ namespace api.Controllers
             return Ok(review.ToReviewDto());
         }
 
-        [HttpPost("{productId}")]
-        public async Task<IActionResult> Create([FromRoute] int productId, CreateReviewDto reviewDto)
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateReviewDto reviewDto)
         {
-            if(!await _productRepo.ProductExists(productId))
-            {
-                return BadRequest("San pham khong ton tai");
-            }
 
-            var reviewModel = reviewDto.ToReviewFromCreate(productId);
+            var reviewModel = reviewDto.ToReviewFromCreate();
             await _reviewRepo.CreateAsync(reviewModel);
 
             return CreatedAtAction(nameof(GetById), new {id = reviewModel.Id}, reviewModel.ToReviewDto());
@@ -60,7 +56,7 @@ namespace api.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, UpdateReviewDto updateDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, UpdateReviewDto updateDto)
         {
             var review = await _reviewRepo.UpdateAsync(id, updateDto.ToReviewFromUpdate());
 
@@ -74,7 +70,7 @@ namespace api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var reviewModel = await _reviewRepo.DeleteAsync(id);
 
